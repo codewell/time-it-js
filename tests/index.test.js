@@ -30,7 +30,7 @@ test("Synchronous function (dev):", () => {
   });
 });
 
-test("Synchronous function (dev):", () => {
+test("Synchronous function (prod):", () => {
   return timeItProd(
     syncFunc,
     "Test 2"
@@ -52,7 +52,7 @@ test("Asynchronous function (dev):", () => {
   });
 });
 
-test("Asynchronous function (dev):", () => {
+test("Asynchronous function (prod):", () => {
   return timeItProd(
     asyncFunc,
     "Test 4"
@@ -64,6 +64,9 @@ test("Asynchronous function (dev):", () => {
 //
 // Failures
 //
-test("Throw error", async () => {
-  await expect(timeItProd(brokenFunc, "Test 5")()).rejects.toThrow();
+test("Throw error (dev)", async () => {
+  await expect(timeItDev(brokenFunc, "Test 5")()).rejects.toThrow();
+});
+test("Throw error (prod", async () => {
+  await expect(timeItProd(brokenFunc, "Test 6")()).rejects.toThrow();
 });
